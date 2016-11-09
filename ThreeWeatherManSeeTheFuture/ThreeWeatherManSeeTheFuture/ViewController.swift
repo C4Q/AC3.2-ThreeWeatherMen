@@ -100,7 +100,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.humidityLabel.text = "Humidity: \(String(self.weather.humidity))"
         self.visibilityLabel.text = "Visibility: \(String(self.weather.visibility))"
         self.windSpeedLabel.text = "Wind Speed: \(String(self.weather.speed))"
-        self.windDegLabel.text = "Wind Deg: \(String(self.weather.deg))"
+        self.windDegLabel.text = "Wind Deg: " + DataTypeManager.manager.windDegreeConversion(degreeDirection: self.weather.deg)
         self.sunriseLabel.text = "Sunrise: " + DataTypeManager.manager.timestampToString(unix: self.weather.sunrise)
         self.sunsetLabel.text = "Sunset: " + DataTypeManager.manager.timestampToString(unix: self.weather.sunset)
     }
