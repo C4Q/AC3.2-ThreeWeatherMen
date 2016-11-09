@@ -152,9 +152,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }
         }
-        
-        
-        
         return cell
     }
 
