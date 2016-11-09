@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		ED47BA671DD13D2A0073DA79 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED47BA661DD13D2A0073DA79 /* APIRequestManager.swift */; };
+		ED6A0D1E1DD2C8B30011B8AC /* ForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A0D1D1DD2C8B30011B8AC /* ForecastCollectionViewCell.swift */; };
+		ED6A0D201DD37C5F0011B8AC /* DataTypeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A0D1F1DD37C5F0011B8AC /* DataTypeManager.swift */; };
 		EDFB1F721DD12339006A9523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFB1F711DD12339006A9523 /* AppDelegate.swift */; };
 		EDFB1F741DD12339006A9523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFB1F731DD12339006A9523 /* ViewController.swift */; };
 		EDFB1F771DD12339006A9523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDFB1F751DD12339006A9523 /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		ED47BA661DD13D2A0073DA79 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		ED6A0D1D1DD2C8B30011B8AC /* ForecastCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		ED6A0D1F1DD37C5F0011B8AC /* DataTypeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeManager.swift; sourceTree = "<group>"; };
 		EDFB1F6E1DD12339006A9523 /* ThreeWeatherManSeeTheFuture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreeWeatherManSeeTheFuture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDFB1F711DD12339006A9523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDFB1F731DD12339006A9523 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				EDFB1F731DD12339006A9523 /* ViewController.swift */,
+				ED6A0D1D1DD2C8B30011B8AC /* ForecastCollectionViewCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -98,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				ED47BA661DD13D2A0073DA79 /* APIRequestManager.swift */,
+				ED6A0D1F1DD37C5F0011B8AC /* DataTypeManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -178,6 +184,8 @@
 				ED47BA671DD13D2A0073DA79 /* APIRequestManager.swift in Sources */,
 				EDFB1F741DD12339006A9523 /* ViewController.swift in Sources */,
 				EDFB1F881DD12709006A9523 /* Weather.swift in Sources */,
+				ED6A0D201DD37C5F0011B8AC /* DataTypeManager.swift in Sources */,
+				ED6A0D1E1DD2C8B30011B8AC /* ForecastCollectionViewCell.swift in Sources */,
 				EDFB1F721DD12339006A9523 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

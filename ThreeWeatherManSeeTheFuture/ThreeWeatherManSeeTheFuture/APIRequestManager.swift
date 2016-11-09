@@ -20,29 +20,56 @@ internal class APIRequestManager{
         
         session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
             if error != nil{
-                print("URL error here: \(error!)")
+                print("URL error for today weather: \(error!)")
             }
             
             if data != nil{
-                print("got data!!!!")
+                print("got today's weather data!!!!")
                 callback(data)
             }
             
         }.resume()
     }
     
-    func getPicture(weathertype: String, callback: @escaping (Data?) -> Void) {
-        
-        let myURL: URL = URL(string: "http://loremflickr.com/320/240/\(weathertype)")!
+    func getForecast(apiKey key: String, id: Int, callback: @escaping ((Data?)->Void)){
+        let url: URL = URL(string: "http://api.openweathermap.org/data/2.5/forecast?appid=\(key)&id=\(String(id))")!
         
         let session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
+            if error != nil{
+                print("URL error for forecast: \(error!)")
+            }
+            
+            if data != nil{
+                print("got forcast data for city \(String(id))!!!!")
+                callback(data)
+            }
+        }.resume()
+    }
+    
+    // 0 for random pic or 1 for icon
+    func getPicture(name: String, endpiontSwitch: Int, callback: @escaping (Data?) -> Void) {
+        let myURL: URL
+        
+        switch endpiontSwitch {
+        case 0:
+            myURL = URL(string: "http://loremflickr.com/320/240/\(name)")!
+        case 1:
+            myURL = URL(string: "http://openweathermap.org/img/w/\(name).png")!
+        default:
+            myURL = URL(string: " ")!
+        }
+        
+        let session: URLSession = URLSession(configuration: URLSessionConfiguration.default)
+        
         session.dataTask(with: myURL) { (data: Data?, response: URLResponse?, error: Error?) in
             if error != nil {
                 print("Error during session: \(error!)")
             }
             guard let validData = data else { return }
             callback(validData)
-            }.resume()
+        }.resume()
     }
     
 }

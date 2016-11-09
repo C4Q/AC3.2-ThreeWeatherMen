@@ -8,14 +8,32 @@
 
 import UIKit
 
+extension UIView {
+    func addBackground() {
+        // screen width and height:
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: width, height: height)))
+        imageViewBackground.image = #imageLiteral(resourceName: "background_image")
+        
+        // you can change the content mode:
+        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        
+        self.addSubview(imageViewBackground)
+        self.sendSubview(toBack: imageViewBackground)
+    }
+}
+
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     private let apiKey = "93163a043d0bde0df1a79f0fdebc744f"
     private var zipCode = "10002"
     
     private let collectionCellIdentifier = "ForcastingWeatherCellIdentifier"
+    //private let sectionInsets = UIEdgeInsets(top: 1.0, left: 2.0, bottom: 1.0, right: 2.0)
+    //private let itemsPerRow: CGFloat = 3
     
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var maxTempLabel: UILabel!
     @IBOutlet weak var minTempLabel: UILabel!
@@ -30,12 +48,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var sunsetLabel: UILabel!
     @IBOutlet weak var randomPicView: UIImageView!
     
+    @IBOutlet weak var forecastCollectionView: UICollectionView!
+    
     var weather: Weather!
+    var forecast = [Weather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "See The Future"
+        self.view.addBackground()
+        self.tempTypesSegment.selectedSegmentIndex = 1
         loadData()
     }
     
@@ -45,39 +67,60 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 if let finalWeather = Weather.setWeather(from: myData!){
                     DispatchQueue.main.async {
                         self.weather = finalWeather
-                        self.locationLabel.text = self.weather.name
-                        self.currentTempLabel.text = String(self.weather.temperture)
-                        self.maxTempLabel.text = "Hi: \(String(self.weather.temp_max))"
-                        self.minTempLabel.text = "Lo: \(String(self.weather.temp_min))"
-                        self.descriptionLabel.text = "Description: \(self.weather.description)"
-                        self.pressureLabel.text = "Pressure: \(String(self.weather.pressure))"
-                        self.humidityLabel.text = "Humidity: \(String(self.weather.humidity))"
-                        self.visibilityLabel.text = "Visibility: \(String(self.weather.visibility))"
-                        self.windSpeedLabel.text = "Wind Speed: \(String(self.weather.speed))"
-                        self.windDegLabel.text = "Wind Deg: \(String(self.weather.deg))"
-                        self.sunriseLabel.text = "Sunrise: \(String(self.weather.sunrise))"
-                        self.sunsetLabel.text = "Sunset: \(String(self.weather.sunset))"
-
+                        self.setupView()
+                        self.loadForecast(cityID: self.weather.id)
                         self.loadImage(name: self.weather.name)
-                        dump(finalWeather)
                     }
                 }
             }
         }
     }
     
+    func loadForecast(cityID: Int){
+        APIRequestManager.manager.getForecast(apiKey: self.apiKey, id: cityID) {
+            (data: Data?) in
+            
+            if data != nil{
+                DispatchQueue.main.async {
+                    self.forecast = Weather.setForecast(from: data!)!
+                    //dump(self.forecast)
+                    self.forecastCollectionView?.reloadData()
+                }
+            }
+        }
+    }
+    
+    func setupView(){
+        self.navigationItem.title = self.weather.name
+        self.currentTempLabel.text = DataTypeManager.manager.tempertureConversion(temperture: self.weather.temperture, tempType: self.tempTypesSegment.selectedSegmentIndex)!
+        self.maxTempLabel.text = "Hi: " + DataTypeManager.manager.tempertureConversion(temperture: self.weather.temp_max, tempType: self.tempTypesSegment.selectedSegmentIndex)!
+        self.minTempLabel.text = "Lo: " + DataTypeManager.manager.tempertureConversion(temperture: self.weather.temp_min, tempType: self.tempTypesSegment.selectedSegmentIndex)!
+        self.descriptionLabel.text = "Description: \(self.weather.description)"
+        self.pressureLabel.text = "Pressure: \(String(self.weather.pressure))"
+        self.humidityLabel.text = "Humidity: \(String(self.weather.humidity))"
+        self.visibilityLabel.text = "Visibility: \(String(self.weather.visibility))"
+        self.windSpeedLabel.text = "Wind Speed: \(String(self.weather.speed))"
+        self.windDegLabel.text = "Wind Deg: \(String(self.weather.deg))"
+        self.sunriseLabel.text = "Sunrise: " + DataTypeManager.manager.timestampToString(unix: self.weather.sunrise)
+        self.sunsetLabel.text = "Sunset: " + DataTypeManager.manager.timestampToString(unix: self.weather.sunset)
+    }
+    
     func loadImage(name: String){
         let imageName: String = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         
-        APIRequestManager.manager.getPicture(weathertype: imageName) {
+        APIRequestManager.manager.getPicture(name: imageName, endpiontSwitch: 0) {
             (imageData: Data?) in
             if imageData != nil{
                 DispatchQueue.main.async {
                     self.randomPicView.image = UIImage(data: imageData!)
                 }
             }
-            
         }
+    }
+    
+    @IBAction func tempTypeSwitch(_ sender: UISegmentedControl) {
+        self.setupView()
+        self.forecastCollectionView?.reloadData()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -85,14 +128,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return self.forecast.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier, for: indexPath) as! ForecastCollectionViewCell
+        
+        cell.castedTemp.text = DataTypeManager.manager.tempertureConversion(temperture: self.forecast[indexPath.row].temperture, tempType: self.tempTypesSegment.selectedSegmentIndex)
+        cell.backgroundColor = UIColor.cyan
         
         return cell
     }
+
 
 }
 
