@@ -311,6 +311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7NBTE6SY4Z;
 				INFOPLIST_FILE = ThreeWeatherManSeeTheFuture/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tonglin.t91-gmail.com.ThreeWeatherManSeeTheFuture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -324,6 +325,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7NBTE6SY4Z;
 				INFOPLIST_FILE = ThreeWeatherManSeeTheFuture/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tonglin.t91-gmail.com.ThreeWeatherManSeeTheFuture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
