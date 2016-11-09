@@ -83,7 +83,7 @@ internal class DataTypeManager{
             print("Switch to North-NorthWest")
             return "NNW"
         default:
-            print("I am the weatherMan! Feel my winds upon your soul, you pleb")
+            print("I am the weatherMan! Feel my winds upon your soul, you pleb, What is going on!! I made this switch!!")
             return " I am an error in the WindDegreeConvesion Fucntion"
         }
     }
