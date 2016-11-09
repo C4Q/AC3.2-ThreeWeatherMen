@@ -25,7 +25,7 @@ extension UIView {
     }
 }
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     private let apiKey = "93163a043d0bde0df1a79f0fdebc744f"
     private var zipCode = "10002"
     
@@ -58,6 +58,30 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         self.view.addBackground()
         self.tempTypesSegment.selectedSegmentIndex = 1
+        loadData()
+        
+        searchBar.delegate = self
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        
+//    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if self.searchBar.text?.characters.count == 5 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        zipCode = searchBar.text!
+        
         loadData()
     }
     
