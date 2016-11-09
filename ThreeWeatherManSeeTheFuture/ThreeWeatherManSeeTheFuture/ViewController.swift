@@ -15,14 +15,7 @@ extension UIView {
         let height = UIScreen.main.bounds.size.height
         
         let imageViewBackground = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: width, height: height)))
-        APIRequestManager.manager.getPicture(name: "sky", endpiontSwitch: 3) {
-            (backgroundData: Data?) in
-            if backgroundData != nil{
-                DispatchQueue.main.async {
-                    imageViewBackground.image = UIImage(data: backgroundData!)
-                }
-            }
-        }
+        imageViewBackground.image = #imageLiteral(resourceName: "background")
         
         // you can change the content mode:
         imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
@@ -99,6 +92,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         zipCode = searchBar.text!
         
         loadData()
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
     }
     
     func loadData() {
