@@ -74,6 +74,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.searchBar.showsCancelButton = true
     }
     
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.searchBar.showsCancelButton = false
@@ -93,6 +94,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         <#code#>
     }
     
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         zipCode = searchBar.text!
         
@@ -183,9 +185,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }
         }
-        
-        
-        
         return cell
     }
 
