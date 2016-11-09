@@ -9,6 +9,7 @@
 import UIKit
 
 class ForecastCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var castedTemp: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var iconImage: UIImageView!
 }
