@@ -34,7 +34,7 @@ internal class DataTypeManager{
         let date = Date(timeIntervalSince1970: TimeInterval(a))
         
         let timePeriodFormatter = DateFormatter()
-        timePeriodFormatter.dateFormat = "hh:mm"
+        timePeriodFormatter.dateFormat = "HH:mm"
         
         let finalTime = timePeriodFormatter.string(from: date)
         print(finalTime)

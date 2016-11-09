@@ -133,7 +133,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VZZ-nc-IBO">
                                 <rect key="frame" x="0.0" y="330" width="375" height="60"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nLz-3j-NTS"/>
                                 </constraints>
@@ -151,21 +151,39 @@
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUI-9g-aee">
-                                                    <rect key="frame" x="2" y="2" width="56" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k6A-1Y-8MW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajL-NK-Kip">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zm9-WP-bnV">
+                                                    <rect key="frame" x="0.0" y="45.5" width="60" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="KUI-9g-aee" firstAttribute="leading" secondItem="ltI-4u-ce2" secondAttribute="leading" constant="2" id="GNb-gY-KN2"/>
-                                            <constraint firstAttribute="trailing" secondItem="KUI-9g-aee" secondAttribute="trailing" constant="2" id="Xf9-rf-Eqa"/>
-                                            <constraint firstItem="KUI-9g-aee" firstAttribute="top" secondItem="ltI-4u-ce2" secondAttribute="top" constant="2" id="n4d-uH-39Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="ajL-NK-Kip" secondAttribute="trailing" id="1be-Vo-LHG"/>
+                                            <constraint firstAttribute="bottom" secondItem="k6A-1Y-8MW" secondAttribute="bottom" id="Cm8-wF-O5Q"/>
+                                            <constraint firstItem="zm9-WP-bnV" firstAttribute="leading" secondItem="ltI-4u-ce2" secondAttribute="leading" id="EDy-m6-eJd"/>
+                                            <constraint firstItem="ajL-NK-Kip" firstAttribute="top" secondItem="ltI-4u-ce2" secondAttribute="top" id="LqR-Fv-Dbh"/>
+                                            <constraint firstItem="ajL-NK-Kip" firstAttribute="leading" secondItem="ltI-4u-ce2" secondAttribute="leading" id="OE8-I2-ahJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="zm9-WP-bnV" secondAttribute="bottom" id="Pbn-AM-3kc"/>
+                                            <constraint firstAttribute="trailing" secondItem="k6A-1Y-8MW" secondAttribute="trailing" id="TRA-k7-zsZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="zm9-WP-bnV" secondAttribute="trailing" id="del-Mt-xDD"/>
+                                            <constraint firstItem="k6A-1Y-8MW" firstAttribute="leading" secondItem="ltI-4u-ce2" secondAttribute="leading" id="nm3-qD-IbU"/>
+                                            <constraint firstItem="k6A-1Y-8MW" firstAttribute="top" secondItem="ltI-4u-ce2" secondAttribute="top" id="tic-qm-vHT"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="castedTemp" destination="KUI-9g-aee" id="nCX-84-ZkQ"/>
+                                            <outlet property="castedTemp" destination="ajL-NK-Kip" id="RRw-IQ-WVH"/>
+                                            <outlet property="iconImage" destination="k6A-1Y-8MW" id="ryO-ej-Jnb"/>
+                                            <outlet property="timeLabel" destination="zm9-WP-bnV" id="XI6-Yd-PtA"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

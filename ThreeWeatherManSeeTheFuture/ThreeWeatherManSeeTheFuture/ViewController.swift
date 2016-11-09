@@ -15,7 +15,14 @@ extension UIView {
         let height = UIScreen.main.bounds.size.height
         
         let imageViewBackground = UIImageView(frame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: width, height: height)))
-        imageViewBackground.image = #imageLiteral(resourceName: "background_image")
+        APIRequestManager.manager.getPicture(name: "sky", endpiontSwitch: 3) {
+            (backgroundData: Data?) in
+            if backgroundData != nil{
+                DispatchQueue.main.async {
+                    imageViewBackground.image = UIImage(data: backgroundData!)
+                }
+            }
+        }
         
         // you can change the content mode:
         imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
@@ -133,9 +140,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier, for: indexPath) as! ForecastCollectionViewCell
+        let currentTemp = forecast[indexPath.row]
+        cell.castedTemp.text = DataTypeManager.manager.tempertureConversion(temperture: currentTemp.temperture, tempType: self.tempTypesSegment.selectedSegmentIndex)
+        cell.timeLabel.text = DataTypeManager.manager.timestampToString(unix: currentTemp.dt)
         
-        cell.castedTemp.text = DataTypeManager.manager.tempertureConversion(temperture: self.forecast[indexPath.row].temperture, tempType: self.tempTypesSegment.selectedSegmentIndex)
-        cell.backgroundColor = UIColor.cyan
+        APIRequestManager.manager.getPicture(name: currentTemp.icon, endpiontSwitch: 1) {
+            (iconData: Data?) in
+            if iconData != nil{
+                DispatchQueue.main.async {
+                    cell.iconImage.image = UIImage(data: iconData!)
+                }
+            }
+        }
+        
+        
         
         return cell
     }
