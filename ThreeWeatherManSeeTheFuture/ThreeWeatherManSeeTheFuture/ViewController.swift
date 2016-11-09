@@ -74,13 +74,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.searchBar.showsCancelButton = true
     }
     
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        
-//    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
+        
+    }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if self.searchBar.text?.characters.count == 5 {
-            return true
+            return searchBar.endEditing(true)
         } else {
             return false
         }
