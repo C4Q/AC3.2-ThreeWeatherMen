@@ -184,9 +184,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-Xv-Aqi">
-                                        <rect key="frame" x="279" y="301" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wj-Xv-Aqi">
+                                        <rect key="frame" x="256" y="299" width="69" height="34"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.4824084052" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" title="Save Pic">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="savePicToLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2yY-tG-CoB"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CFF-On-zY2">
                                         <rect key="frame" x="13" y="341" width="350" height="623"/>
@@ -265,6 +272,7 @@
                         <outlet property="minTempLabel" destination="vvP-wD-gPZ" id="M3L-NP-p6Y"/>
                         <outlet property="pressureLabel" destination="8Oh-G5-lWQ" id="rDa-KH-0Wb"/>
                         <outlet property="randomPicView" destination="CFF-On-zY2" id="iCX-EY-p0h"/>
+                        <outlet property="savePicButton" destination="2wj-Xv-Aqi" id="AGf-lk-WAJ"/>
                         <outlet property="searchBar" destination="py0-aa-ohX" id="Yu3-1o-rjL"/>
                         <outlet property="sunriseLabel" destination="HIH-aS-IoJ" id="34u-ZT-Jhh"/>
                         <outlet property="sunsetLabel" destination="5HX-sO-DCu" id="56H-DW-dRP"/>
