@@ -115,9 +115,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.maxTempLabel.text = "Hi: " + DataTypeManager.manager.tempertureConversion(temperture: self.weather.temp_max, tempType: self.tempTypesSegment.selectedSegmentIndex)!
         self.minTempLabel.text = "Lo: " + DataTypeManager.manager.tempertureConversion(temperture: self.weather.temp_min, tempType: self.tempTypesSegment.selectedSegmentIndex)!
         self.descriptionLabel.text = "Description: \(self.weather.description)"
-        self.pressureLabel.text = "Pressure: \(String(self.weather.pressure))"
-        self.humidityLabel.text = "Humidity: \(String(self.weather.humidity))"
-        self.visibilityLabel.text = "Visibility: \(String(self.weather.visibility))"
+        self.pressureLabel.text = "Pressure: \(String(self.weather.pressure)) hPa"
+        self.humidityLabel.text = "Humidity: \(String(self.weather.humidity))%"
+        self.visibilityLabel.text = "Visibility: \(DataTypeManager.manager.visibilityMetersToMiles(meters: self.weather.visibility)) miles"
         self.windSpeedLabel.text = "Wind Speed: \(String(self.weather.speed))"
         self.windDegLabel.text = "Wind Deg: " + DataTypeManager.manager.windDegreeConversion(degreeDirection: self.weather.deg)
         self.sunriseLabel.text = "Sunrise: " + DataTypeManager.manager.timestampToString(unix: self.weather.sunrise)

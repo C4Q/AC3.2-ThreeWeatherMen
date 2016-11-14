@@ -101,8 +101,12 @@ internal class DataTypeManager{
         return finalTime
     }
     
-    
-    
+    ///Write function to convert visiblity to miles
+    func visibilityMetersToMiles(meters: Int) -> Int {
+        
+        return Int(Double(meters) * 0.000621371)
+    }
+
     
     
 }
