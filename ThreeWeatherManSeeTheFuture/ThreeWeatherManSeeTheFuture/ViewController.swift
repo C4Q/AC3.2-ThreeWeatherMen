@@ -132,6 +132,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             if imageData != nil{
                 DispatchQueue.main.async {
                     self.randomPicView.image = UIImage(data: imageData!)
+                    self.savePicButton.setTitle("Save Pic", for: .normal)
+                    self.savePicButton.isEnabled = true
                 }
             }
         }
@@ -156,8 +158,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     @IBAction func savePicToLibrary(_ sender: UIButton) {
-    
+        sender.setTitle("Saved", for: .normal)
+        sender.isEnabled = false
         UIImageWriteToSavedPhotosAlbum(self.randomPicView.image!, nil, nil, nil)
+        
     
     }
     
