@@ -52,9 +52,9 @@ import Foundation
  } */
 
 
-enum APIWeatherError: Error {
-    case respone
-    case weather
+internal enum APIWeatherError: Error {
+    case respone(json: Any)
+    case weather(json: AnyObject)
     case main
     case wind
     case time
@@ -102,7 +102,7 @@ class Weather {
                 let temp: [String: Any] = weather[0] as? [String: Any],
                 let description: String = temp["description"] as? String,
                 let icon: String = temp["icon"] as? String else {
-                    throw APIWeatherError.weather
+                    throw APIWeatherError.weather(json: weatherData)
             }
             
             guard let main: [String: Any] = weatherData["main"] as? [String: Any],
@@ -139,8 +139,8 @@ class Weather {
             
             return finalWeather
             
-        } catch APIWeatherError.weather {
-            print("error here on parsing weather data:")
+        } catch let APIWeatherError.weather(json: err) {
+            print("error here on parsing weather data: \(err)")
         } catch APIWeatherError.main {
             print("error here on parsing main data:")
         } catch APIWeatherError.wind {
@@ -178,7 +178,7 @@ class Weather {
             
             guard let rawData: [String: AnyObject] = validData as? [String: AnyObject],
                 let weatherList: [AnyObject] = rawData["list"] as? [AnyObject] else {
-                    throw APIWeatherError.respone
+                    throw APIWeatherError.respone(json: validData)
             }
             
             for weather in weatherList{
@@ -189,8 +189,8 @@ class Weather {
             
             return forecastArr
             
-        } catch APIWeatherError.respone {
-            print("error here on parsing raw json data:")
+        } catch let APIWeatherError.respone(json: err) {
+            print("error here on parsing raw json data: \(err)")
         } catch {
             print("unknow error in setForecast func")
         }
