@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 internal class APIRequestManager{
     
     internal static let manager: APIRequestManager = APIRequestManager()
@@ -54,11 +55,9 @@ internal class APIRequestManager{
         
         switch endpiontSwitch {
         case 0:
-            myURL = URL(string: "http://loremflickr.com/750/1334/\(name)")!
+            myURL = URL(string: "https://source.unsplash.com/random/576x1024")!
         case 1:
             myURL = URL(string: "http://openweathermap.org/img/w/\(name).png")!
-        case 3:
-            myURL = URL(string: "http://loremflickr.com/750/1334/\(name)")!
         default:
             myURL = URL(string: " ")!
         }
