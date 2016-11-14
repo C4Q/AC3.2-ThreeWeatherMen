@@ -11,9 +11,9 @@ An app that does stuff related to price comparison.
 Switch Statements:
 
 We used a combination of Switch statements and Functions to call different APIs. If/else statements can get the job done however Switch statments make your code more legible.
-We pull data from two different APIs. 
+We pulled data from two different APIs. 
 
-The below method in the APIRequestMangager class allows us to call the 
+The below method in the APIRequestMangager class allows us to call the getPicture method in the view controller.
 
  func getPicture(name: String, endpiontSwitch: Int, callback: @escaping (Data?) -> Void) {
         let myURL: URL
