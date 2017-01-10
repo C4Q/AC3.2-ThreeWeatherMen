@@ -67,16 +67,31 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.searchBar.showsCancelButton = true
     }
     
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
+        
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if self.searchBar.text?.characters.count == 5 {
+            return searchBar.endEditing(true)
+        } else {
+            return false
+        }
+    }
+    
+//    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        <#code#>
+//    }
+    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         zipCode = searchBar.text!
         
         loadData()
-        searchBar.endEditing(true)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searchBar.showsCancelButton = false
         searchBar.endEditing(true)
     }
     
